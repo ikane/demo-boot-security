@@ -19,5 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		
 		return new User("admin", "1234", AuthorityUtils.createAuthorityList("ADMIN"));
 	}
+	
+	
 
 }
