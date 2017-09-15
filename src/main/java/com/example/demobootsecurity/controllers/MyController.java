@@ -70,11 +70,13 @@ public class MyController {
 	public String redirectToExternalUrl2(HttpServletRequest request) {
 		
 		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyHH");
+			String connectionTimeFormat = "ddMMyyyyHH";
+			SimpleDateFormat sdf = new SimpleDateFormat(connectionTimeFormat);
 			
 			Map<String,String> map = new HashMap<String,String>();
 			map.put("login", "'admin'");
 			map.put("connectionTime", "'" + sdf.format(new Date()) + "'");
+			map.put("connectionTimeFormat", "'" + connectionTimeFormat + "'");			
 			
 			String[] encrypted = StringEncryptor.encryptObject(map);
 			

@@ -1,6 +1,8 @@
 package com.example.demobootsecurity.api;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,9 +24,14 @@ public class MyApis {
 	@GetMapping(value = "urlCrypted/{login}")
 	public String getEncryptedUrl(@PathVariable String login) {
 		
+		String connectionTimeFormat = "ddMMyyyyHH";
+		SimpleDateFormat sdf = new SimpleDateFormat(connectionTimeFormat);
+		
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("login",login);
-		map.put("topSecret","Waffles are tasty");
+		map.put("connectionTime",sdf.format(new Date()));
+		map.put("connectionTimeFormat",connectionTimeFormat);
+		
 		
 		try {		
 			String[] encrypted = StringEncryptor.encryptObject(map);	
